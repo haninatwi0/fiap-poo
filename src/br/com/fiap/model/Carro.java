@@ -11,13 +11,11 @@ public class Carro {
     public Carro(String cor, String marca, int ano) {
 
         this.setCor(cor);
-        this.setMarca(marca);
-        this.setAno(ano);
+        this.marca = marca;
+        this.ano = ano;
         this.setLigado(false);
         this.setVelocidade(0);
     }
-
-    // Getters
 
     public String getCor() {
         return this.cor;
@@ -39,21 +37,11 @@ public class Carro {
         return this.velocidade;
     }
 
-    // Setters privados
+    public void setCor(String cor) {
+		this.cor = cor;
+	}
 
-    private void setCor(String cor) {
-        this.cor = cor;
-    }
-
-    private void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    private void setAno(int ano) {
-        this.ano = ano;
-    }
-
-    private void setLigado(boolean ligado) {
+	private void setLigado(boolean ligado) {
         this.ligado = ligado;
     }
 

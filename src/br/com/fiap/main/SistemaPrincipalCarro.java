@@ -49,9 +49,7 @@ public class SistemaPrincipalCarro {
 
         System.out.println("\n--- Testando Encapsulamento ---");
 
-        // Tentativa de burlar o sistema:
-        // carro1.setVelocidade(-100);
-        // NÃO COMPILA porque setVelocidade() é private.
+
 
         System.out.println(
             "Velocidade atual: "
