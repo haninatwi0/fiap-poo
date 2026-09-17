@@ -2,6 +2,11 @@ package br.com.fiap.main;
 
 
 import br.com.fiap.model.Passageiro;
+<<<<<<< HEAD
+=======
+import br.com.fiap.model.Veiculo;
+import br.com.fiap.model.Viagem;
+>>>>>>> 9074eb8 (feat: implementa associacao entre Viagem, Passageiro e Veiculo)
 
 public class SistemaPrincipalPassageiro {
 
@@ -28,5 +33,19 @@ public class SistemaPrincipalPassageiro {
         System.out.println("\nPagando viagem do passageiro 2 (Carlos)...");
         passageiro2.pagarViagem(20.0); 
        
+<<<<<<< HEAD
+=======
+        
+        Passageiro ana = new Passageiro("Ana Silva", "222.222.222-22");
+        Veiculo carroDoJoao = new Veiculo("ABC-1234", "Toyota Corolla");
+            
+        Viagem viagemDaAna = new Viagem("Avenida Paulista, 1000", ana, carroDoJoao);
+        
+        viagemDaAna.exibirResumo();
+        
+        ana.adicionarSaldo(50.0);
+
+        System.out.println("Saldo da Ana consultado ATRAVÉS da Viagem: R$ " + viagemDaAna.getSolicitante().getSaldo());
+>>>>>>> 9074eb8 (feat: implementa associacao entre Viagem, Passageiro e Veiculo)
     }
 }

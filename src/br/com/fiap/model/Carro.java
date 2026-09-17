@@ -7,14 +7,24 @@ public class Carro {
     private int ano;
     private boolean ligado;
     private int velocidade;
+<<<<<<< HEAD
 
     public Carro(String cor, String marca, int ano) {
+=======
+    private Motor motor;
+
+    public Carro(String cor, String marca, int ano,Motor motor) {
+>>>>>>> 9074eb8 (feat: implementa associacao entre Viagem, Passageiro e Veiculo)
 
         this.setCor(cor);
         this.marca = marca;
         this.ano = ano;
         this.setLigado(false);
         this.setVelocidade(0);
+<<<<<<< HEAD
+=======
+        this.motor = motor;
+>>>>>>> 9074eb8 (feat: implementa associacao entre Viagem, Passageiro e Veiculo)
     }
 
     public String getCor() {
@@ -29,7 +39,15 @@ public class Carro {
         return this.ano;
     }
 
+<<<<<<< HEAD
     public boolean isLigado() {
+=======
+    public Motor getMotor() {
+		return this.motor;
+	}
+
+	public boolean isLigado() {
+>>>>>>> 9074eb8 (feat: implementa associacao entre Viagem, Passageiro e Veiculo)
         return this.ligado;
     }
 
@@ -56,8 +74,11 @@ public class Carro {
         }
     }
 
+<<<<<<< HEAD
     // Métodos de comportamento
 
+=======
+>>>>>>> 9074eb8 (feat: implementa associacao entre Viagem, Passageiro e Veiculo)
     public void ligar() {
 
         if (!this.ligado) {
