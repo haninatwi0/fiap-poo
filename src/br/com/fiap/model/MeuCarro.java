@@ -10,12 +10,11 @@ public class MeuCarro {
     private Motor motor;
 
     public MeuCarro(String cor, String marca, int ano, Motor motor) {
-
         this.setCor(cor);
         this.marca = marca;
         this.ano = ano;
-        this.setLigado(false);
-        this.setVelocidade(0);
+        this.ligado = false;
+        this.velocidade = 0;
         this.motor = motor;
     }
 
@@ -31,16 +30,16 @@ public class MeuCarro {
         return this.ano;
     }
 
-    public Motor getMotor() {
-        return this.motor;
-    }
-
     public boolean isLigado() {
         return this.ligado;
     }
 
     public int getVelocidade() {
         return this.velocidade;
+    }
+
+    public Motor getMotor() {
+        return this.motor;
     }
 
     public void setCor(String cor) {
@@ -52,50 +51,32 @@ public class MeuCarro {
     }
 
     private void setVelocidade(int velocidade) {
-
         if (velocidade >= 0) {
             this.velocidade = velocidade;
         } else {
-            System.out.println(
-                "Erro de Segurança: A velocidade não pode ser negativa!"
-            );
+            System.out.println("Erro de segurança: a velocidade não pode ser negativa.");
         }
     }
 
-    // Métodos de comportamento
-
     public void ligar() {
-
         if (!this.ligado) {
             this.setLigado(true);
-            System.out.println("O carro foi ligado.");
+            System.out.println(this.marca + " foi ligado.");
         } else {
-            System.out.println("O carro já está ligado.");
+            System.out.println(this.marca + " já está ligado.");
         }
     }
 
     public void acelerar(int valor) {
-
         if (!this.ligado) {
-            System.out.println(
-                "Não é possível acelerar. O carro está desligado."
-            );
+            System.out.println("Não é possível acelerar. " + this.marca + " está desligado.");
             return;
         }
-
         if (valor <= 0) {
-            System.out.println(
-                "Erro: O valor da aceleração deve ser maior que zero."
-            );
+            System.out.println("Erro: o valor da aceleração deve ser maior que zero.");
             return;
         }
-
         this.setVelocidade(this.velocidade + valor);
-
-        System.out.println(
-            "O carro acelerou. Velocidade atual: "
-            + this.getVelocidade()
-            + " km/h"
-        );
+        System.out.println(this.marca+ " acelerou " + valor + " km/h. Velocidade atual: " + this.velocidade + " km/h.");
     }
 }

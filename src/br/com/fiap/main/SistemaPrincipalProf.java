@@ -1,10 +1,8 @@
 package br.com.fiap.main;
 
-import br.com.fiap.model.Carro;
-import br.com.fiap.model.Moto;
-import br.com.fiap.model.Passageiro;
-import br.com.fiap.model.Veiculo;
-import br.com.fiap.model.Viagem;
+import br.com.fiap.model.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SistemaPrincipalProf {
 
@@ -45,9 +43,8 @@ public class SistemaPrincipalProf {
         System.out.println("--- FIAPRIDE: Teste de Frota ---");
         
         // 1. Instanciando os objetos específicos   
-        int quantidadePassageiro = 4;     
-        Carro uberX = new Carro("ABC-1234", "Chevrolet Onix", quantidadePassageiro);
-        Moto mottu = new Moto("ABC-9999", "Caloi City", true);
+        Carro uberX = new Carro("ABC-1234", "Chevrolet Onix");
+        Moto mottu = new Moto("ABC-9999", "Caloi City");
         
         // 2. O TESTE: Um Carro consegue acessar getPlaca() da mãe?        
         // Sim! Note que nós não escrevemos getPlaca() dentro da classe Carro. Ele herdou!        
@@ -60,5 +57,18 @@ public class SistemaPrincipalProf {
         if (mottu.isEletrica()) {
             System.out.println("Atenção: Esta moto é elétrica e atinge maiores velocidades!");
         }
-    }
-}   
+        List<Veiculo> frota = new ArrayList<>();
+        // 2. Colocamos 50 litros em ambos os veículos        
+        frota.add(new Carro("ABC-1234", "Honda Civic"));
+        frota.add(new Moto("DEF-5678", "Honda CG 160"));
+        System.out.println("--- ⛽ RELATÓRIO DE AUTONOMIA DA FROTA ---");
+        // 3. A MÁGICA: O mesmo comando produz resultados diferentes!        
+        for (Veiculo veiculo : frota) {
+            System.out.println("Veículo: " + veiculo.getModelo());
+            // O Java é inteligente: se for Carro, usa a conta do carro. Se for Moto, usa a da moto.          
+            veiculo.abaster(50);
+            System.out.println(veiculo.calcularAutonomia()); 
+            System.out.println("---------------------------------------"); 
+        }
+    }    
+}
