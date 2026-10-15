@@ -1,6 +1,6 @@
 package br.com.fiap.model;
 
-public class MeuCarro {
+public abstract class MeuCarro {
 
     private String cor;
     private String marca;
@@ -57,6 +57,8 @@ public class MeuCarro {
             System.out.println("Erro de segurança: a velocidade não pode ser negativa.");
         }
     }
+    
+    public abstract String tipoDeCarro();
 
     public void ligar() {
         if (!this.ligado) {

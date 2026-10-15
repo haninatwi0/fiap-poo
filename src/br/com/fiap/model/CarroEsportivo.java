@@ -24,4 +24,9 @@ public class CarroEsportivo extends MeuCarro {
         System.out.println("Turbo ativado! Aceleração extra: " + aceleracaoTurbo + " km/h.");
         super.acelerar(aceleracaoTotal);
     }
+    
+    @Override
+    public String tipoDeCarro() {
+        return "Carro esportivo";
+    }
 }

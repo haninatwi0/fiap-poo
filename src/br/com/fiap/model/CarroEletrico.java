@@ -23,4 +23,9 @@ public class CarroEletrico extends MeuCarro {
         System.out.println("Modo elétrico eficiente ativado.");
         super.acelerar(aceleracaoEficiente);
     }
+
+	@Override
+	public String tipoDeCarro() {
+		    return "Carro elétrico";
+	}
 }
