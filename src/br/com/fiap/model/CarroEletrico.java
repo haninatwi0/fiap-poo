@@ -1,31 +1,46 @@
 package br.com.fiap.model;
 
-public class CarroEletrico extends MeuCarro {
-
-    private int autonomia;
-
-    public CarroEletrico(String cor,String marca,int ano,Motor motor,int autonomia) {
-        super(cor, marca, ano, motor);
-        this.autonomia = autonomia;
+// 'implements' = assina o contrato
+public class CarroEletrico extends Veiculo implements Recarregavel {
+    
+    private int nivelBateria;
+        
+    public CarroEletrico(String placa, String modelo) {
+        super(placa, modelo);
     }
-
-    public int getAutonomia() {
-        return this.autonomia;
-    }
-
+    
+    // OBRIGATÓRIO: Implementar método da interface
     @Override
-    public void acelerar(int valor) {
-        if (valor <= 0) {
-            System.out.println("Erro: o valor da aceleração deve ser maior que zero.");
+    public void recarregar(int percentual) {
+        if (percentual < Recarregavel.CARGA_MINIMA || percentual > Recarregavel.CARGA_MAXIMA) {
+            System.out.println("Erro: Percentual inválido!");
             return;
         }
-        int aceleracaoEficiente = valor + (valor / 5);
-        System.out.println("Modo elétrico eficiente ativado.");
-        super.acelerar(aceleracaoEficiente);
+        
+        System.out.println("Carro " + this.getModelo() + " recarregado para " + percentual + "%");
+        this.setNivelBateria(percentual);
+
+    }
+    
+    
+    
+    @Override
+    public String calcularAutonomia() {
+        double kmRestante = this.getNivelBateria() * 5.0;
+        return "Autonomia: " + kmRestante + " km.";
+    }
+
+    public int getNivelBateria() {
+        return nivelBateria;
+    }
+
+    public void setNivelBateria(int nivelBateria) {
+        this.nivelBateria = nivelBateria;
     }
 
 	@Override
-	public String tipoDeCarro() {
-		    return "Carro elétrico";
+	public void exibirTipo() {
+		// TODO Auto-generated method stub
+		
 	}
 }

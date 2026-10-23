@@ -1,174 +1,132 @@
 package br.com.fiap.main;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.fiap.model.*;
 
 public class SistemaPrincipalHanin {
 
     public static void main(String[] args) {
 
-        System.out.println("===== SISTEMA DE CARROS =====\n");
+        System.out.println("=== TESTES DA TRILHA DE POO - FIAP ===");
+        System.out.println();
 
-        // ==========================================
-        // TESTE 1: CLASSE ABSTRATA
-        // ==========================================
+        // ================================================================
+        // Aula 1 - Fundamentos de OO - Classes e Objetos
+        // ================================================================
+        System.out.println("-> [Aula 1] Testando criação de classes e objetos:");
+        Motor motorBasico = new Motor("1.6 Turbo", 150);
+        System.out.println("Motor criado com sucesso: " + motorBasico.getTipo());
+        
+        /* 
+         * OBS DA AULA 1: Antigamente dava pra fazer "new MeuCarro(...)".
+         * Mas como a classe MeuCarro virou abstrata na Aula 8, agora a gente 
+         * só instancia as classes filhas dela! Deixei anotado aqui.
+         */
+        System.out.println();
 
-        // Tentar criar um objeto de MeuCarro diretamente
-        // vai gerar erro de compilação.
-        //
-        // Descomente para testar:
-        //
-        // MeuCarro carroTeste = new MeuCarro("Preto","Toyota",2024,new Motor("Flex", 150));
-        //
-        // ERRO: MeuCarro is abstract; cannot be instantiated
+        // ================================================================
+        // Aula 2 - Métodos e Comportamentos
+        // ================================================================
+        System.out.println("-> [Aula 2] Testando métodos e comportamentos:");
+        Motor motorV8 = new Motor("V8", 500);
+        MeuCarroEsportivo minhaFerrari = new MeuCarroEsportivo("Vermelho", "Ferrari", 2022, motorV8, 60);
+        
+        // Chamando os métodos que fazem o carro agir
+        minhaFerrari.ligar();
+        minhaFerrari.acelerar(40);
+        System.out.println();
 
+        // ================================================================
+        // Aula 3 - Protegendo o Sistema - Encapsulamento (Getters e Setters)
+        // ================================================================
+        System.out.println("-> [Aula 3] Testando encapsulamento (Getters e Setters):");
+        System.out.println("Cor atual (pegando com o get): " + minhaFerrari.getCor());
+        
+        // Mudando a cor usando o set com segurança
+        minhaFerrari.setCor("Preto Fosco");
+        System.out.println("Cor nova (depois do set): " + minhaFerrari.getCor());
+        
+        // Tentando colocar velocidade negativa (a regra do set barra isso)
+        minhaFerrari.acelerar(-20);
+        System.out.println();
 
-        // ==========================================
-        // CRIANDO OS MOTORES
-        // ==========================================
+        // ================================================================
+        // Aula 4 - Construtores
+        // ================================================================
+        System.out.println("-> [Aula 4] Testando construtores:");
+        // O construtor obriga a gente a passar os dados principais logo na criação
+        Motor motorPorsche = new Motor("Boxster", 450);
+        MeuCarroEsportivo porsche = new MeuCarroEsportivo("Prata", "Porsche", 2023, motorPorsche, 50);
+        System.out.println("Porsche criada com o construtor! Ano: " + porsche.getAno());
+        System.out.println();
 
-        Motor motor1 = new Motor("Flex", 150);
-        Motor motor2 = new Motor("Elétrico", 204);
-        Motor motor3 = new Motor("Turbo", 300);
+        // ================================================================
+        // Aula 5 - Quando os Objetos Conversam - Relacionamentos (Associação)
+        // ================================================================
+        System.out.println("-> [Aula 5] Testando relacionamentos (Associação):");
+        // O carro tem um objeto Motor guardado dentro dele
+        System.out.println("A " + porsche.getMarca() + " usa um motor: " 
+                + porsche.getMotor().getTipo() + " (" + porsche.getMotor().getPotencia() + " HP)");
+        System.out.println();
 
+        // ================================================================
+        // Aula 6 - A Árvore Genealógica - Herança (Generalização)
+        // ================================================================
+        System.out.println("-> [Aula 6] Testando herança:");
+        Motor motorEletrico = new Motor("Elétrico Puro", 400);
+        MeuCarroEletrico tesla = new MeuCarroEletrico("Branco", "Tesla", 2024, motorEletrico, 500);
 
-        // ==========================================
-        // CRIANDO OS CARROS
-        // ==========================================
+        // O Tesla herdou a marca e o método ligar da classe MeuCarro
+        tesla.ligar();
+        System.out.println("Marca herdada: " + tesla.getMarca());
+        System.out.println("Atributo próprio do elétrico (autonomia): " + tesla.getAutonomia() + " km");
+        System.out.println();
 
-        // Agora usamos as classes concretas
+        // ================================================================
+        // Aula 7 - Muitas Formas - Polimorfismo de Sobrescrita
+        // ================================================================
+        System.out.println("-> [Aula 7] Testando polimorfismo de sobrescrita (@Override):");
+        System.out.println("Acelerando a Ferrari (método com turbo sobrescrito):");
+        minhaFerrari.ligar();
+        minhaFerrari.acelerar(30);
 
-        CarroEsportivo carro1 = new CarroEsportivo("Preto","Toyota",2024,motor1,100);
+        System.out.println("\nAcelerando o Tesla (método com eficiência elétrica sobrescrito):");
+        tesla.acelerar(30);
+        System.out.println();
 
-        CarroEletrico carro2 = new CarroEletrico("Branco","BYD",2026,motor2,450);
+        // ================================================================
+        // Aula 8 - O Molde Invisível - Classes Abstratas
+        // ================================================================
+        System.out.println("-> [Aula 8] Testando classes abstratas e polimorfismo em array:");
+        // MeuCarro é abstrata, mas posso criar um array dela e colocar os filhos dentro
+        MeuCarro[] minhaGaragem = { minhaFerrari, porsche, tesla };
 
-        CarroEsportivo esportivo = new CarroEsportivo("Vermelho","Ferrari",2025,motor3,120);
+        for (MeuCarro c : minhaGaragem) {
+            // Chamando o método abstrato que cada classe filha teve que implementar do seu jeito
+            System.out.println("Carro: " + c.getMarca() + " | Tipo: " + c.tipoDeCarro());
+        }
+        System.out.println();
 
-        CarroEletrico eletrico = new CarroEletrico("Azul","Tesla",2026,motor2,500);
+        // ================================================================
+        // Aula 9 - O Contrato de Comportamento - Interfaces
+        // ================================================================
+        System.out.println("-> [Aula 9] Testando interfaces (contrato de comportamento):");
+        Elevador predio = new Elevador(42, 6000);
+        ServidorCloud aws = new ServidorCloud("10.0.1.15", 89.5);
 
+        // Juntando carros, elevador e servidor numa interface só! Nada a ver, mas funciona hehe
+        Inspecionavel[] listaParaInspecao = { minhaFerrari, tesla, predio, aws };
 
-        // ==========================================
-        // DADOS DOS CARROS
-        // ==========================================
-
-        System.out.println("--- Dados dos Carros ---");
-
-        System.out.println("Carro 1: " + carro1.getMarca() + " | Cor: " + carro1.getCor() + " | Ano: " + carro1.getAno());
-
-        System.out.println("Carro 2: " + carro2.getMarca()  + " | Cor: " + carro2.getCor() + " | Ano: " + carro2.getAno());
-
-
-        // ==========================================
-        // DADOS DO CARRO ESPORTIVO
-        // ==========================================
-
-        System.out.println("\n--- Carro Esportivo ---");
-
-        System.out.println("Marca: " + esportivo.getMarca());
-
-        System.out.println("Cor: " + esportivo.getCor());
-
-        System.out.println("Ano: " + esportivo.getAno());
-
-        System.out.println("Potência do Turbo: " + esportivo.getPotenciaTurbo() + " cv");
-
-
-        // ==========================================
-        // DADOS DO CARRO ELÉTRICO
-        // ==========================================
-
-        System.out.println("\n--- Carro Elétrico ---");
-
-        System.out.println("Marca: " + eletrico.getMarca());
-
-        System.out.println("Cor: " + eletrico.getCor());
-
-        System.out.println("Ano: " + eletrico.getAno());
-
-        System.out.println("Autonomia: " + eletrico.getAutonomia() + " km");
-
-
-        // ==========================================
-        // DADOS DOS MOTORES
-        // ==========================================
-
-        System.out.println("\n--- Dados dos Motores ---");
-
-        System.out.println("Motor do Carro 1: "+ carro1.getMotor().getTipo()+ " | Potência: "+ carro1.getMotor().getPotencia()+ " cv");
-
-        System.out.println("Motor do Esportivo: "+ esportivo.getMotor().getTipo()+ " | Potência: "+ esportivo.getMotor().getPotencia()+ " cv");
-
-        System.out.println("Motor do Elétrico: "+ eletrico.getMotor().getTipo()+ " | Potência: " + eletrico.getMotor().getPotencia()+ " cv");
-
-
-        // ==========================================
-        // LIGANDO OS CARROS
-        // ==========================================
-
-        System.out.println("\n--- Ligando os Carros ---");
-
-        carro1.ligar();
-        carro2.ligar();
-        esportivo.ligar();
-        eletrico.ligar();
-
-
-        // ==========================================
-        // TESTE DO MÉTODO ABSTRATO
-        // ==========================================
-
-        System.out.println("\n--- Tipos dos Carros ---");
-
-        System.out.println(carro1.getMarca()+ ": "+ carro1.tipoDeCarro());
-
-        System.out.println(carro2.getMarca()+ ": "+ carro2.tipoDeCarro());
-
-        System.out.println(esportivo.getMarca()+ ": "+ esportivo.tipoDeCarro());
-
-        System.out.println(eletrico.getMarca()+ ": "+ eletrico.tipoDeCarro());
-
-
-        // ==========================================
-        // TESTE DE POLIMORFISMO
-        // ==========================================
-
-        System.out.println("\n--- Teste de Polimorfismo ---");
-
-        List<MeuCarro> carros = new ArrayList<>();
-
-        carros.add(carro1);
-        carros.add(carro2);
-        carros.add(esportivo);
-        carros.add(eletrico);
-
-        for (MeuCarro carro : carros) {
-
-            System.out.println("\nCarro: " + carro.getMarca());
-
-            System.out.println("Tipo: " + carro.tipoDeCarro());
-
-            carro.acelerar(50);
+        for (Inspecionavel item : listaParaInspecao) {
+            System.out.println("----------------------------------------");
+            item.executarDiagnostico();
+            
+            if (item.precisaDeManutencao()) {
+                System.out.println("Status: Precisa de manutenção!");
+            } else {
+                System.out.println("Status: Tudo ok por aqui.");
+            }
         }
 
-
-        // ==========================================
-        // POLIMORFISMO COM ARRAY
-        // ==========================================
-
-        System.out.println("\n--- Polimorfismo com Classe Abstrata ---");
-
-        MeuCarro[] frota = new MeuCarro[] {
-            new CarroEletrico("Branco","BYD",2026,motor2,450),
-            new CarroEsportivo( "Preto","Porsche",2025, motor3,150),
-            new CarroEletrico("Cinza", "Tesla",2026, motor2,500)
-        };
-
-        for (MeuCarro carro : frota) {
-        	System.out.println("Marca: " + carro.getMarca());
-        	System.out.println("Tipo: " + carro.tipoDeCarro());
-            System.out.println("---");
-        }
+        System.out.println("\n=== FIM DOS TESTES - TUDO RODANDO CERTINHO! ===");
     }
 }

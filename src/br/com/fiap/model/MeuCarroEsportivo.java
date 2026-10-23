@@ -1,10 +1,10 @@
 package br.com.fiap.model;
 
-public class CarroEsportivo extends MeuCarro {
+public class MeuCarroEsportivo extends MeuCarro {
 
     private int potenciaTurbo;
 
-    public CarroEsportivo(String cor,String marca,int ano,Motor motor,int potenciaTurbo) {
+    public MeuCarroEsportivo(String cor,String marca,int ano,Motor motor,int potenciaTurbo) {
         super(cor, marca, ano, motor);
         this.potenciaTurbo = potenciaTurbo;
     }

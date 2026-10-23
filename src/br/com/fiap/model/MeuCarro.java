@@ -1,6 +1,6 @@
 package br.com.fiap.model;
 
-public abstract class MeuCarro {
+public abstract class MeuCarro implements Inspecionavel {
 
     private String cor;
     private String marca;
@@ -80,5 +80,17 @@ public abstract class MeuCarro {
         }
         this.setVelocidade(this.velocidade + valor);
         System.out.println(this.marca+ " acelerou " + valor + " km/h. Velocidade atual: " + this.velocidade + " km/h.");
+    }
+
+    // Métodos da interface Inspecionavel
+    @Override
+    public void executarDiagnostico() {
+        System.out.println("Checando fluidos, pneus e motor (" + this.motor.getTipo() + ") do veículo " + this.marca + "...");
+    }
+
+    @Override
+    public boolean precisaDeManutencao() {
+        // Exemplo: precisa de manutenção se for antigo (fabricado antes de 2020)
+        return this.ano < 2020;
     }
 }
